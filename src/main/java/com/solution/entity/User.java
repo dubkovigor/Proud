@@ -1,7 +1,5 @@
 package com.solution.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -21,9 +19,8 @@ public class User {
     private String firstName;
     @Column(name = "lastName")
     private String lastName;
-    @OneToMany(mappedBy = "carId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference
-    @Column(name = "cars")
+
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Car> cars;
 
     public Long getUserId() {

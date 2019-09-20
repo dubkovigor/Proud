@@ -17,10 +17,19 @@ public class Coordinate {
     private Double longitude;
     @Column(name = "timeStamp")
     private Date timeStamp;
-
+    @Column(name="carId")
+    private Long carId;
 
     public Double getLatitude() {
         return latitude;
+    }
+
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
     public void setLatitude(Double latitude) {
@@ -52,6 +61,17 @@ public class Coordinate {
     }
 
     @Override
+    public String toString() {
+        return "Coordinate{" +
+                "coordinateId=" + coordinateId +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", timeStamp=" + timeStamp +
+                ", carId=" + carId +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -59,21 +79,12 @@ public class Coordinate {
         return Objects.equals(coordinateId, that.coordinateId) &&
                 Objects.equals(latitude, that.latitude) &&
                 Objects.equals(longitude, that.longitude) &&
-                Objects.equals(timeStamp, that.timeStamp);
+                Objects.equals(timeStamp, that.timeStamp) &&
+                Objects.equals(carId, that.carId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coordinateId, latitude, longitude, timeStamp);
-    }
-
-    @Override
-    public String toString() {
-        return "Coordinate{" +
-                "coordinateId=" + coordinateId +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", timeStamp=" + timeStamp +
-                '}';
+        return Objects.hash(coordinateId, latitude, longitude, timeStamp, carId);
     }
 }

@@ -1,7 +1,5 @@
 package com.solution.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -13,12 +11,13 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "carId")
     private Long carId;
-    @OneToMany(mappedBy = "coordinateId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference
-    @Column(name = "coordinates")
-    private List<Coordinate> coordinates;
     @Column(name = "carName")
     private String carName;
+    @Column(name = "userId")
+    private Long userId;
+
+    @OneToMany(mappedBy = "carId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Coordinate> coordinates;
 
     public Long getCarId() {
         return carId;
@@ -44,12 +43,21 @@ public class Car {
         this.carName = carName;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
                 "carId=" + carId +
-                ", coordinates=" + coordinates +
                 ", carName='" + carName + '\'' +
+                ", userId=" + userId +
+                ", coordinates=" + coordinates +
                 '}';
     }
 
@@ -59,12 +67,13 @@ public class Car {
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
         return Objects.equals(carId, car.carId) &&
-                Objects.equals(coordinates, car.coordinates) &&
-                Objects.equals(carName, car.carName);
+                Objects.equals(carName, car.carName) &&
+                Objects.equals(userId, car.userId) &&
+                Objects.equals(coordinates, car.coordinates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(carId, coordinates, carName);
+        return Objects.hash(carId, carName, userId, coordinates);
     }
 }
