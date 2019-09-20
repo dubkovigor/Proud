@@ -2,8 +2,17 @@ package com.solution.dto;
 
 public class CoordinateDto {
 
+    private Long carId;
     private Double latitude;
     private Double longitude;
+
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
+    }
 
     public Double getLatitude() {
         return latitude;
@@ -24,7 +33,8 @@ public class CoordinateDto {
     @Override
     public String toString() {
         return "CoordinateDto{" +
-                "latitude=" + latitude +
+                "carId=" + carId +
+                ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
     }
