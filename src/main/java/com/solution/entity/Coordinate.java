@@ -1,15 +1,23 @@
 package com.solution.entity;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 public class Coordinate {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "coordinateId")
+    private Long coordinateId;
+    @Column(name = "latitude")
     private Double latitude;
+    @Column(name = "longitude")
     private Double longitude;
+    @Column(name = "timeStamp")
     private Date timeStamp;
+
 
     public Double getLatitude() {
         return latitude;
@@ -35,13 +43,12 @@ public class Coordinate {
         this.timeStamp = timeStamp;
     }
 
-    @Override
-    public String toString() {
-        return "Coordinate{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", timeStamp=" + timeStamp +
-                '}';
+    public Long getCoordinateId() {
+        return coordinateId;
+    }
+
+    public void setCoordinateId(Long coordinateId) {
+        this.coordinateId = coordinateId;
     }
 
     @Override
@@ -49,13 +56,24 @@ public class Coordinate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coordinate that = (Coordinate) o;
-        return Objects.equals(latitude, that.latitude) &&
+        return Objects.equals(coordinateId, that.coordinateId) &&
+                Objects.equals(latitude, that.latitude) &&
                 Objects.equals(longitude, that.longitude) &&
                 Objects.equals(timeStamp, that.timeStamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(latitude, longitude, timeStamp);
+        return Objects.hash(coordinateId, latitude, longitude, timeStamp);
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinate{" +
+                "coordinateId=" + coordinateId +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", timeStamp=" + timeStamp +
+                '}';
     }
 }

@@ -1,17 +1,29 @@
 package com.solution.entity;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "userId")
     private Long userId;
+    @Column(name = "login")
     private String login;
+    @Column(name = "password")
     private String password;
+    @Column(name = "firstName")
     private String firstName;
+    @Column(name = "lastName")
     private String lastName;
+    @OneToMany(mappedBy = "carId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
+    @Column(name = "cars")
     private List<Car> cars;
 
     public Long getUserId() {

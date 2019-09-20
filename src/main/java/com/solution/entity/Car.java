@@ -1,14 +1,23 @@
 package com.solution.entity;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "car")
 public class Car {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "carId")
     private Long carId;
+    @OneToMany(mappedBy = "coordinateId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
+    @Column(name = "coordinates")
     private List<Coordinate> coordinates;
+    @Column(name = "carName")
     private String carName;
 
     public Long getCarId() {
