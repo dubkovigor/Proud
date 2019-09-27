@@ -1,6 +1,7 @@
 package com.solution.entity;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ public class Car {
     private Long userId;
 
     @OneToMany(mappedBy = "carId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Coordinate> coordinates;
+    private List<Coordinate> coordinates = Collections.emptyList();
 
     public Long getCarId() {
         return carId;
@@ -49,6 +50,10 @@ public class Car {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public void addCoordinate(Coordinate coordinate) {
+        this.coordinates.add(coordinate);
     }
 
     @Override

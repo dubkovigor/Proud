@@ -10,7 +10,8 @@ public class CoordinateDtoToCoordinate {
     private CoordinateDtoToCoordinate() {
     }
 
-    public static Coordinate transform(CoordinateDto coordinateDto){
+    public static Coordinate transform(CoordinateDto coordinateDto) {
+
         Coordinate coordinate = new Coordinate();
         coordinate.setLatitude(coordinateDto.getLatitude());
         coordinate.setLongitude(coordinateDto.getLongitude());

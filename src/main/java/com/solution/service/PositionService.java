@@ -4,5 +4,5 @@ import com.solution.dto.CoordinateDto;
 
 public interface PositionService {
 
-    void setCurrentCoordinate(CoordinateDto coordinateDto);
+    void setCurrentCoordinate(String carId, CoordinateDto coordinateDto);
 }
