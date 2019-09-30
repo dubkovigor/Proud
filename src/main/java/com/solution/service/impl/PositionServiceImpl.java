@@ -10,21 +10,29 @@ import com.solution.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PositionServiceImpl implements PositionService {
 
-    @Autowired
+
     private CoordinateRepository coordinateRepository;
-    @Autowired
+
     private CarRepository carRepository;
+
+    @Autowired
+    public PositionServiceImpl(CoordinateRepository coordinateRepository, CarRepository carRepository) {
+        this.coordinateRepository = coordinateRepository;
+        this.carRepository = carRepository;
+    }
 
     @Override
     public void setCurrentCoordinate(String carId, CoordinateDto coordinateDto) {
 
         Coordinate coordinate = CoordinateDtoToCoordinate.transform(coordinateDto);
 
-        Car car = carRepository.findCarByCarId(Long.valueOf(carId));
+        Optional<Car> car = carRepository.findById(Long.valueOf(carId));
 
-        car.addCoordinate(coordinate);
+        car.get().addCoordinate(coordinate);
     }
 }
