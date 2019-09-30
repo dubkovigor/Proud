@@ -53,6 +53,7 @@ public class Car {
     }
 
     public void addCoordinate(Coordinate coordinate) {
+        coordinate.setCarId(this.carId);
         this.coordinates.add(coordinate);
     }
 

@@ -7,14 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/mobile")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/currentCoordinates")
-    public ResponseEntity<String> saveUser(@RequestParam String userId, @RequestBody UserDto userDto) {
+    @PostMapping("/save")
+    public ResponseEntity<String> saveUser(@RequestBody UserDto userDto) {
 
         return ResponseEntity.ok("UserController");
     }

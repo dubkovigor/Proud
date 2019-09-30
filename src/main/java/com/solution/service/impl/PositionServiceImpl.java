@@ -33,6 +33,10 @@ public class PositionServiceImpl implements PositionService {
 
         Optional<Car> car = carRepository.findById(Long.valueOf(carId));
 
-        car.get().addCoordinate(coordinate);
+        car.ifPresent(value -> {
+            value.addCoordinate(coordinate);
+            carRepository.save(value);
+        });
+
     }
 }
